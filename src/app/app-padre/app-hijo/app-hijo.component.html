@@ -1,0 +1,15 @@
+<!--Valor llegado desde el padre  al-->
+<h3>{{datoPadre}}</h3>
+
+
+
+    <button (click)="incrementar()" class="btn btn-success">+</button>
+    <button (click)="decrementar()" class="btn btn-danger">-</button>
+
+<br>
+
+<div style="display: flex; margin-top: 50px; ">
+    <label for="send">Ingrese el mensaje: </label>
+    <input type="text" id="send" [(ngModel)]="messageToFather">
+    <button (click)="sendMessage()" class="btn btn-warning"> Send information</button>
+</div>
