@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SerivicioFamiliarService } from '../serivicio-familiar.service';
 
 @Component({
   selector: 'app-app-padre',
@@ -6,21 +7,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./app-padre.component.css']
 })
 export class AppPadreComponent {
-  tittle: string = "Angular"
-  numberClick: number = 0;
-  //Para enviar el mensaje al hijo
-  datoEntrada: String = "-------------";
 
-  mensaje: string = "";
-  recibirMensaje($event:string){
-    this.mensaje = $event;
+  constructor(private _serivicioFamiliar: SerivicioFamiliarService){
+
+  }
+  hermanoMayor?:string;
+
+  ngOnInit():void{
+    this._serivicioFamiliar.setHermanoMayor("Juan");
+    this.hermanoMayor = this._serivicioFamiliar.getHermanoMayor();
+  }
+
+  tittle: string = "Angular";
+  datoPadre:String = "--------";
+  //Para enviar el mensaje al hijo
+  numberClick:number = 0;
+
+  messageFromSon: string= "";
+
+  responseMessage($event: string){
+    this.messageFromSon= $event;
   }
 
   incrementar(){
     this.numberClick++;
   }
-
-  decrementar(): void {
-    this.numberClick ===0 ? this.numberClick : this.numberClick--;
+  decrementar(){
+    this.numberClick ===0?this.numberClick:this.numberClick--;
   }
+
+  
 }  

@@ -4,14 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppPadreComponent } from './app-padre/app-padre.component';
-import { AppHijoComponent } from './app-padre/app-hijo/app-hijo.component';
+import { AppHijoComponent } from './app-hijo/app-hijo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppHermanoComponent } from './app-hermano/app-hermano.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppPadreComponent,
-    AppHijoComponent
+    AppHijoComponent,
+    AppHermanoComponent
   ],
   imports: [
     BrowserModule,

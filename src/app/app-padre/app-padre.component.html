@@ -4,21 +4,18 @@
 
 
 <div style="display: flex; align-items: center; gap: 10px;">
-    <h2 >{{tittle}}</h2>
-
+    <h2>{{tittle}}</h2>
+    
 </div>
+<p>Contador: {{numberClick}}</p>
+
 <!--Pasamos el datos del padre al valor de la variable del hijo, como un hook en react
 <app-app-hijo [datoPadre]=datoEntrada/>-->
-<p class="" style="display: inline; margin-right: 10px;">Click contain: {{numberClick}}</p>
-<app-app-hijo 
-
-(incrementarFromSon)="incrementar()"
-(decrementarFromSon)="decrementar()"
-(messageToSend)="recibirMensaje($event)"
-[datoPadre]="datoEntrada"
+<app-app-hijo
+(messageSon)="responseMessage($event)"
+(incrementFromSon)="incrementar()"
+(decrementFromSon)="decrementar()"
+[datoEntrada]="datoPadre"
 />
+<h5>Message received: {{messageFromSon}}</h5>
 
-
-
-
-<h5>Mensaje recibido: {{mensaje}}</h5>
