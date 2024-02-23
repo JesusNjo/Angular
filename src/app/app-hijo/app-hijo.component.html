@@ -6,7 +6,7 @@
 <br>
 
 <div style="display: flex; align-items: center; gap:5px">
-    <label for="msj">Type your message: </label>
-    <input type="text" name="" id="msj" [(ngModel)]="message">
+    <label for="msj" style="text-decoration: underline;">Type your message: </label>
+    <input class="card" type="text" name="" id="msj" [(ngModel)]="message">
     <button (click)="sendMessage()" class="btn btn-warning">Send message</button>
 </div>

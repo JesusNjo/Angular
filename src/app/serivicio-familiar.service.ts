@@ -7,8 +7,8 @@ export class SerivicioFamiliarService {
 
 
 
-  hermanoMayor?:string;
-  hermanoMenor?: string;
+  private hermanoMayor?:string;
+  private hermanoMenor?: string;
 
   getHermanoMayor():string{
     return this.hermanoMayor || '';
@@ -25,7 +25,7 @@ export class SerivicioFamiliarService {
   }
 
   saludar(hermano:string){
-    console.log(`Hola ${hermano}`);
+   console.log(`Hola ${hermano}`)
   }
 
   preguntarPorHijo():string{

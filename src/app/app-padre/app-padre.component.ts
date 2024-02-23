@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SerivicioFamiliarService } from '../serivicio-familiar.service';
 
 @Component({
@@ -6,19 +6,21 @@ import { SerivicioFamiliarService } from '../serivicio-familiar.service';
   templateUrl: './app-padre.component.html',
   styleUrls: ['./app-padre.component.css']
 })
-export class AppPadreComponent {
+export class AppPadreComponent implements OnInit{
 
-  constructor(private _serivicioFamiliar: SerivicioFamiliarService){
+  constructor(private _servicioFamiliar: SerivicioFamiliarService){
 
   }
   hermanoMayor?:string;
 
   ngOnInit():void{
-    this._serivicioFamiliar.setHermanoMayor("Juan");
-    this.hermanoMayor = this._serivicioFamiliar.getHermanoMayor();
+    this._servicioFamiliar.setHermanoMayor("Juan");
+    this.hermanoMayor = this._servicioFamiliar.getHermanoMayor();
   }
-
-  tittle: string = "Angular";
+ 
+  
+  
+  title: string = "Angular";
   datoPadre:String = "--------";
   //Para enviar el mensaje al hijo
   numberClick:number = 0;

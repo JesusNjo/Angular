@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string= 'app-test';
-  tenantId: number = 150;
+  title: string= 'Angular';
 }

@@ -1,0 +1,165 @@
+--Para los modulos (Organización de los modulos)
+ng g m <nombre-del-modulo> <-- Crear el modulo
+    @NgModule <-- Decorador-Metadata de los modulos
+    declarations: [MiComponente1],
+    imports: [MiComponente3],
+    exports: [MiComponente2],
+
+    Ejemplo en codigo:
+ @NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule, <-- Importa modulos de angular
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent] <-- Componente principal de la app
+})
+
+
+-- Para los componentes (Elementos visuales o estructura de datos) REUTILIZABLES
+
+ng g c <nombre-del-componente> <-- Crear un Componente
+
+Se crean 4 archivos:
+* El archivo del componente (TypeScript)
+* El archivo HTML (HTML)
+* El arhivo de estilos (CSS)
+* Arhivo de pruebas (JavaScript.spec.TS)
+
+A) COMPONENTE-Metadata
+@Component({
+  selector: 'app-nombre-del-componenteTYSCRIPT',
+  templateUrl: './nombre-del-componenteHTML.html',
+  styleUrls: ['./nombre-del-componenteEstilos.css']
+})
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent { <-- Class
+  title = 'csangular'; <-- Propiedades del componente
+}
+
+B) COMPONENTE-PLANTILLA HTML
+<div>
+    <h1>{{titulo}}</h1> <-- PARA INTERPOLAR LAS VARIABLES Y TRAERLAS DESDE EL COMPONENTE
+    <p>Este es el contenido de mi componente.</p>
+</div>
+
+C)
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  } <-- ESTILOS CSS
+
+
+D) Testing
+
+-- ENLACES DE datos
+Una caracteristica que permite vincular e interpolar los componentes
+[(ng-model)] <-- Para escuchar de adelante hacia atras
+Ejemplo:
+COMPONENTE:
+
+  valorContador: number = 0;
+
+  incrementar(){
+    this.valorContador++;
+  }
+
+  decrementar(){
+    this.valorContador--;
+  }
+
+  HTML:
+    <h1>Contador: {{valorContador}}</h1>
+    <button (click) = "incrementar()">Incrementar</button>
+    <button (click) = "decrementar()">Incrementar</button>
+
+-- METADA @Injectables
+
+
+-- COMUNICACION ENTRE COMPONENTES @Input @Output
+
+Un componente padre puede pasar datos a sus hijos mediante @Input y un hijo a un padre mediante @Output
+---------------
+@Input() datoEntrada:String;
+1) El componente hijo, puede definir propiedades de entrada utilizando @Input. Representará los datos que se esperan recibir del padre
+
+<app-hijo [datoEntrada]="valorDesdeElPadre"> </app-hijo>
+2) En el componente padre, se vinculan datos desde la propiedad de entrada del componente hijo utulizando la sintaxis de corchetes[] en el marco del template
+
+valorDesdeElPadre = "Hola, mundo!";
+3) Cuando el valor de la propiedad en el componente padre cambia, angular automaticamente actualiza la propiedad de entrada en el componente hijo.
+
+<p>{{datoEntrada}}
+4) En el componente hijo, puedes utiliza la propiedad de entrada (datoEntrada en este caso) como cualquier otra propiedad local
+--------------
+@Output() messageEvent = new EventEmitter<String>();
+message: string = ' ';
+
+sendMessage(){
+  this.messageEvent.emit(this.message);
+}
+1) Se utiliza @Output y EventEmitter para lograr la comunicacion entre componente hijo y su componente padre. Declarando una propiedad con @Output en el hijo y emitiendo con EventEmitter
+
+<div>
+  <label for="childInput">Mensaje:</label>
+  <input id=""childInput" [(NgModel)]="message"/>
+  <button (click)="sendMessage()">Enviar mensaje</button>
+</div>
+
+2) El archivo HTML contiene la interfaz de usuario del componente hijo. Incluye un input para que el usuario ingrese un mensaje y un boton para enviarlo. Utiliza NgModel para vincular el input con la propiedad message del componente TS
+
+receivedMessage: string = '';
+receiveMessage(message:string){
+  this.receivedMessage = message;
+}
+3) El archivo TS define el componente ParentComponent que tiene una propiedad (receivedMessage) para almacenar mensajes recibidos del componente hijo, Incluye un método (receiveMessage) que actualiza esta propiedad cuando se emite el evento desde el componente hijo.
+
+<div>
+  <app-child (messageEvent)="receiveMessage($event)></app-child>
+  <p>Mensaje recibido en el padre: {{receivedMessage}} </p>
+</div>
+
+4) La plantilla HTML del componente padre incluye el componete hijo (<app-child>) y utiliza el evento de salida messageEvent para llamar al metodo receiveMessage cuando se emite un mensaje desde el componente hijo. MUestra el mensaje recibido en la interfaz del componente
+
+
+-- SERVICIOS
+
+Un clase TypeScript para organizar y compartir logica. Para reutilizar logica
+
+ng g s <nombre-del-servicio> <-- Para crear un servicio
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MiServicioService{
+  constructor(){ }
+}
+<- metodos y logica del servicio ->
+
+-- Dependencias
+
+Son los recursos externos y modulos de codigo que una aplicacion necesita para funcionar correctamente. Estos recursos pueden incluir bibliotecas externas. DI como en Spring
+
+Para inyectar:
+1)@Inject
+2) constructor(private miServicio:MiServicio){
+
+  }
