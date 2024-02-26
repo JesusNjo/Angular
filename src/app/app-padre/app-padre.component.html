@@ -17,10 +17,24 @@
 (decrementFromSon)="decrementar()"
 [datoEntrada]="datoPadre"
 />
-<h5>Message received: {{messageFromSon}}</h5>
+<!--Agregando la directiva-->
+<h5 appEstiloHermanos >Message received: {{messageFromSon}}</h5>
 
 <div>
     <p>Mi nombre es {{hermanoMayor}} y soy el hermano mayor</p>
     <app-app-hermano/>
 </div>
-
+<hr>
+<!--Agregando el PIPE-->
+<h3 appEstiloHermanos> {{messageFromSon | miPipePersonalizado }}</h3>
+<!--Pipes de Angular 
+date
+uppercase - lowecase
+currency : EUR/USD/ETC
+number: 1.0-0 (QUITAR DECIMALES) - 1.2-2 (QUE SOLO TENGA 2 DECIMALES)
+percent: porcentaje
+-->
+<h4>Fecha de nacimiento: {{fecha | date:"YYYY/MM/dd"}}</h4>
+<h4>Cuanto cotiza el dolar: {{dolar | currency: 'EUR'}}</h4>
+<h4>Numero PI: {{pi | number: '1.0-0'}}</h4>
+<h4>El porcentaje es: {{factor | percent}}</h4>

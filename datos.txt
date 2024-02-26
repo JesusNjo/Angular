@@ -163,3 +163,112 @@ Para inyectar:
 2) constructor(private miServicio:MiServicio){
 
   }
+
+
+  -- Directivas
+
+  Son instrucciones en el marcado HTML que proporcionan funcionalidad adicional a los elementos en el DOM existente.
+
+  ng g d <nombre-directiva> <-- Para crearla
+Ejemplo:
+
+  @Directive({
+    selector: '[appMiDirectiva]'
+  })
+  export class MiDirectivaDirectiva{
+    this.el.nativeElement.style.backgroundColor = 'yellow'
+  };
+
+  <div appMiDirectiva>
+    Este elemento es de la directiva
+  </div>
+
+  -- PIPES
+  Son una caracteristica que permite formatear y transformar datos en la vista de una aplicacion web de manera sencilla y legible. Funcionan para tomar un valor de entrada y lo procesar para proporcinar una representación modificada o formateada en la UI. Se utilizan en el HTML y se utilizan con la barra |.
+
+  ng generate p <nombre-del-pipe>
+
+  Ejemplo:
+  @Pipe({
+    name: 'miPipe'
+  })
+  export class MiPipe implements PipeTransform{
+    transform(valor:any): any{
+      return valor.toUpperCase();
+    }
+  }
+
+  HTML: 
+  <p> {{texto | miPipe}}</p>
+
+  -- ENRUTAMIENTO
+
+  En Angular se refiere a la capacidad de navegar entre diferentes componentes y vistas de una aplicacion sin recargar la pagina completa. Permite crear aplicaciones de una sola pagina SPA (single page aplication) donde los cambios en la URL desencadena la carga de diferentes.
+
+Las rutas definen las correspondecia entre las URL y los componentes que deben cargarse cuando esa URL esta activa. Se configuran en un array dentro del modulo de la aplicacion
+  Ejemplo:
+  const routes: Routes= [
+    {path: 'inicio', component: InicioComponent},
+    {path: 'productos' , component: ProductosComponent},
+    {path: 'contacto', component: ContactoComponent}
+  ]
+
+<router-outlet></router.outlet>:
+    La directiva router-outlet se utiliza en la plantilla para indicar el lugar donde Angular debe cargar dinamicamente los componentes asociados a las rutas
+
+    Navegacion:
+    <a routerLink= "/inicio">Inicio</a>
+
+    Parametros de ruta:
+    {path: 'productp/:id',component: DetalleProductoComponent}
+    <a [routerLink] = "['/producto', producto.id]">Ver detalles</a>
+routerLinkActive
+  Para activar la opcion del menu al enrutar con Angular, puedes utilizar la directiva routerLinkActive. Se utiliza para aplicar una clase CSS cuando el enlace asociado este activo
+
+  <nav>
+    <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+    <a routerLink="/productos" routerLinkActive="active">Productos</a>
+    <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
+  </nav>
+
+  Parametros por la URL
+  1)Definir una ruta con varios Parametros
+  
+  const routes:Routes = [
+    {path: 'producto/:categoria/:id', component: DetalleProductoComponent}
+  ];
+
+  2) Enlazar a la ruta con multiples Parametros
+
+  <a [routerLink] = "['/producto', producto.categoria, producto.id]"> Ver Detalles</a>
+
+  3) Recuperar los parametros en el componente
+  
+  import {ActivatedRouted} from '@angular/router'
+
+  constructor(private route:ActivatedRouter) {}
+
+  ngOnInit(){
+    this.route.params.subscribe(params=>{
+      const categoria = params['categoria'];
+      const productId = params['id'];
+    })
+  }
+
+  const routes: Routes=[
+    {path: 'producto/:categoria/:id', component: DetalleProductoComponent},
+  ];
+
+
+  <a [routerLink] ="['/producto', producto.categoria, producto.id]">Ver Detalles</a>
+
+  Navegar desde el controller
+
+  Para navegar programaticamente desde typescript en angular, puedes utilizar el servicio Router. Este servicio proporciona metodos para realizar la navegacion entre rutas
+  import {Router} from '@angular/router'
+
+  constructor(private router:Router) {}
+
+  navegarAProducto(productoId: number){
+    this.router.navigate(['/producto', productoId])
+  }

@@ -12,6 +12,10 @@ export class AppPadreComponent implements OnInit{
 
   }
   hermanoMayor?:string;
+  fecha: Date = new Date("1994/04/01");
+  dolar: number = 38.54;
+  pi?: number = Math.PI;
+  factor: number = 0.5;
 
   ngOnInit():void{
     this._servicioFamiliar.setHermanoMayor("Juan");
