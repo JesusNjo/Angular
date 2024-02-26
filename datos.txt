@@ -272,3 +272,44 @@ routerLinkActive
   navegarAProducto(productoId: number){
     this.router.navigate(['/producto', productoId])
   }
+
+  -- Estructura de controller
+  Las estructuras de control son herramientas que permiten manipular el flujo de ejecución en la aplicación
+
+  1) *ngif : Permite mostrar u ocultar un elemento en funcion de una exp booleana
+  <div *ngIF="mostrarElemento">
+    Contenido visible si mostrarElemento es true.
+  </div>
+
+  2) *ngFor : Utilizado para iterar sobre una lista y renderizar elementos repetitivos
+  <ul>
+    <li *nfFor="let item of listaItems">
+    {{item}}
+    </li>
+  </ul>
+
+  3) ngSwitch: Muestra un bloque de contenido segun el valor de una expresion
+  <div [ngSwitch]="opcion">
+    <p *ngSwitchCase= "'opcion1'">Contenido para opcion 1</p>
+    <p *ngSwitchCase= "'opcion2'">Contenido para opcion 2</p>
+    <p *ngSwitchCase= "'opcion3'">Contenido para opcion 3</p>
+    <p *ngSwitchDefault>Contenido para default</p>
+  </div>
+
+  4) ngClass: Permite cambiar dinamicamente las clases de un elemento
+  <div [ngClass]="{'clase1': condicion1, 'clase2': condicion2}">
+    contenido con clases dinamicas
+  </div>
+
+  5) ngStyle: Permite cambiar dinamicamente los estilos de un elemento
+  <div [ngStyle]="{'color': color, 'font-size':tamano}"
+    Contenido con estilos dinamicos
+  </div>
+
+  6) ngContainer: Es una estructura de control que no afecta al DOM. Se utiliza para agrupar elementos sin agregar nodos adicionales al arbol DOM
+
+  <ng-container *ngIf= "condicion">  (PARECIDO AL FRAMENT DE REACT)
+    contenido que no afecta al DOM
+  </ng-container>
+
+  7) ngTemplate/ngPlural/ngComponentOutlet
