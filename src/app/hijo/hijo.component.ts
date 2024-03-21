@@ -11,7 +11,8 @@ export class AppHijoComponent {
   @Output() incrementFromSon = new EventEmitter<void>();
   @Output() decrementFromSon = new EventEmitter<void>();
   @Output() messageSon = new EventEmitter<string>();
-
+ 
+  
   message:string = "";
   
   sendMessage(){
