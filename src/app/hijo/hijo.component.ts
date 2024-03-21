@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-app-hijo',
-  templateUrl: './app-hijo.component.html',
-  styleUrls: ['./app-hijo.component.css']
+  selector: 'app-hijo',
+  templateUrl: './hijo.component.html',
+  styleUrls: ['./hijo.component.css']
 })
 export class AppHijoComponent {
   //Mensaje que recibe el hijo desde el padre

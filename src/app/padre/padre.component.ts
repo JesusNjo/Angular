@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SerivicioFamiliarService } from '../serivicio-familiar.service';
+import { SerivicioFamiliarService } from '../../service/serivicio-familiar.service';
 
 @Component({
-  selector: 'app-app-padre',
-  templateUrl: './app-padre.component.html',
-  styleUrls: ['./app-padre.component.css']
+  selector: 'app-padre',
+  templateUrl: './padre.component.html',
+  styleUrls: ['./padre.component.css']
 })
 export class AppPadreComponent implements OnInit{
 
