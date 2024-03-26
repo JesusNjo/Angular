@@ -13,7 +13,7 @@ export class ContacsComponent {
 
   constructor(forms:FormBuilder){
     this.formGroup = forms.group({
-      name: ['', [Validators.required, Validators.minLength(5)]],
+      name: ['', [Validators.required, Validators.minLength(5), this.validRegex()]],
       email: ['', [Validators.required, Validators.email, this.validToCom()]]
     })
   }
@@ -30,6 +30,16 @@ export class ContacsComponent {
   }
   hasErrors(controlName:string,typeError:string){
     return this.formGroup.get(controlName)?.hasError(typeError) && this.formGroup.get(controlName)?.touched
+  }
+  validRegex():ValidatorFn{
+    return (control) => {
+      const name = control.value as string;
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])/; // Expresión regular para verificar que haya al menos una mayúscula y una minúscula
+      if (!regex.test(name)) {
+        return { 'invalidName': true };
+      }
+      return null;
+    };
   }
 
 }

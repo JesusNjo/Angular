@@ -7,6 +7,7 @@
            type="text" class="form-control" id="name" formControlName="name" placeholder="Type your name">
           <p class="text-danger" *ngIf="hasErrors('name','required')">Name field is required.</p>
           <p class="text-danger" *ngIf="hasErrors('name','minlength')">Your name must've at least 5 characters.</p>
+          <p class="text-danger" *ngIf="hasErrors('name','invalidName')">Your name must have upper and lower case letters.</p>
         </div>
 
 
