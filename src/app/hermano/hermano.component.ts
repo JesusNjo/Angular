@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SerivicioFamiliarService } from '../serivicio-familiar.service';
+import { SerivicioFamiliarService } from '../../service/serivicio-familiar.service';
 
 @Component({
-  selector: 'app-app-hermano',
-  templateUrl: './app-hermano.component.html',
-  styleUrls: ['./app-hermano.component.css']
+  selector: 'app-hermano',
+  templateUrl: './hermano.component.html',
+  styleUrls: ['./hermano.component.css']
 })
 export class AppHermanoComponent implements OnInit {
   hermanoMenor?: string;
