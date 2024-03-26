@@ -1,0 +1,26 @@
+<div class="container">
+    <form [formGroup]="formGroup" (ngSubmit)="enviar()">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name </label>
+          <input
+           [ngClass]="{'is-invalid': hasErrors('name','required') || hasErrors('name','minlength')}" 
+           type="text" class="form-control" id="name" formControlName="name" placeholder="Type your name">
+          <p class="text-danger" *ngIf="hasErrors('name','required')">Name field is required.</p>
+          <p class="text-danger" *ngIf="hasErrors('name','minlength')">Your name must've at least 5 characters.</p>
+        </div>
+
+
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email address</label>
+          <input
+          [ngClass]="{'is-invalid': hasErrors('email','required') || hasErrors('email','email' || hasErrors('email','isInvalidEmail'))}"
+          type="email" class="form-control" id="email" formControlName="email" placeholder="Type your email">
+          <p class="text-danger" *ngIf="hasErrors('email','required')">Email address is required</p>
+          <p class="text-danger" *ngIf="hasErrors('email','email')">Email address is required</p>
+          <p class="text-danger" *ngIf="hasErrors('email','isInvalidEmail')">Email format must've .com</p>
+        </div>
+     
+        <hr>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>

@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList">
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.name}}</td>
+        <td>{{product.price | currency}}</td>
+        <td>
+            <button class="btn btn-outline-success" [routerLink]="['/products', product.id]">Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

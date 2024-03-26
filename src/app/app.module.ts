@@ -7,8 +7,13 @@ import { AppPadreComponent } from './padre/padre.component';
 import { AppHijoComponent } from './hijo/hijo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppHermanoComponent } from './hermano/hermano.component';
-import { EstiloHermanosDirective } from './estilo-hermanos.directive';
-import { MiPipePersonalizadoPipe } from './mi-pipe-personalizado.pipe';
+import { EstiloHermanosDirective } from '../directive/estilo-hermanos.directive';
+import { MiPipePersonalizadoPipe } from '../pipes/mi-pipe-personalizado.pipe';
+import { RouterModule } from '@angular/router';
+import { ProductsComponent } from './products/products.component';
+import { HomecComponent } from './homec/homec.component';
+import { ProductsDetailsComponent } from './products-details/products-details.component';
+import { ContacsComponent } from './contacs/contacs.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +22,16 @@ import { MiPipePersonalizadoPipe } from './mi-pipe-personalizado.pipe';
     AppHijoComponent,
     AppHermanoComponent,
     EstiloHermanosDirective,
-    MiPipePersonalizadoPipe
+    MiPipePersonalizadoPipe,
+    ProductsComponent,
+    HomecComponent,
+    ProductsDetailsComponent,
+    ContacsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule
     
