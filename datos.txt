@@ -273,7 +273,7 @@ routerLinkActive
     this.router.navigate(['/producto', productoId])
   }
 
-  -- Estructura de controller
+  -- Estructura de control
   Las estructuras de control son herramientas que permiten manipular el flujo de ejecución en la aplicación
 
   1) *ngif : Permite mostrar u ocultar un elemento en funcion de una exp booleana
@@ -313,3 +313,87 @@ routerLinkActive
   </ng-container>
 
   7) ngTemplate/ngPlural/ngComponentOutlet
+
+  -- FORMULARIOS
+
+  Son una parte esencial para interactuar con el usuario y recopilar datos. Hay dos tipos principales de forumarios en angular: Los basados en plantillas (template-driven) y los reactivos (reactive)
+
+  1) Plantillas:
+  Necesitas importar el FormsModule
+
+Ejemplo:
+import {FormsModule} from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    //componentes
+    ,
+  ]
+  imports: [
+    FormsModule,
+    //otros modulos a utilizar
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+Utilizan los formularios basados en plantillas en la sintaxis del template del HTML para construir y validar formularios. La directiva ngForm se utiliza para crear un formulario y ngModel para enlazar datos bidireccionalmente.
+
+<form #myForm='ngForm' (ngSubmit) = 'onSubmit()'>
+  <label form="name">Nombre: </label>
+  <input type='text' id='name' [(ngModel)] = "user.name" required>
+  
+  <label form="name">Email: </label>
+  <input type='text' id='email' [(ngModel)] = "user.email" required>
+
+  <button type="submit"> Enviar </button>
+</form>
+
+  2) Reactivos:
+  Necesitas importar el FormsModule
+
+Ejemplo:
+import {FormsModule} from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    //componentes
+    ,
+  ]
+  imports: [
+    ReactiveFormsModule,
+    //otros modulos a utilizar
+  ],
+  bootstrap: [AppComponent]
+})
+
+Los formularios reactivos se construyen en el componente utilizando el servicio FormBuilder. Los controles se definen explicitamente y se vinculan al formulario.
+:
+import {FormBuilder,FormGroup,Validators} from '@angular/forms';
+
+constructor(private fb: FormBuilder){
+  this.myForm = this.fb.group({
+    name: ['', Validators.required],
+    Email: ['', Validators.required, Validators.email],
+  })
+}
+
+<form [FormGroup]="myForm" (ngSubmit) = 'onSubmit()'>
+  <label form="name">Nombre: </label>
+  <input type='text' id='name' formControlName="name" required>
+  
+  <label form="email">Nombre: </label>
+  <input type='text' id='email' formControlName="email" required>
+
+  <button type="submit"> Enviar </button>
+</form>
+
+Manejo de estados de error:
+Los cambios en los campos y el estado del formulario se manejan de manera reactiva en el componente
+
+<div *ngIf="myForm.get('name').hasError('required') && myForm.get('name').touched">
+Nombre es obligatorio
+</div>
+
+<div *ngIf="myForm.get('email').hasError('required') && myForm.get('email').touched">
+Correo no valido
+</div> 
