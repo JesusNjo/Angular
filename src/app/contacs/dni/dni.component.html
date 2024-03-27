@@ -1,0 +1,10 @@
+   
+    <form [formGroup]="formGroup">
+        <div class="mb-3">
+            <label for="dni" class="form-label">{{newChanges}}</label>
+            <input type="dni" [ngClass]="{'is-invalid': hasErrors('required') || hasErrors('minlength')}" class="form-control" id="name" placeholder="Type your dni" formControlName="dni">
+            <p class="text-danger" *ngIf="hasErrors('required')">{{newChanges}} field is required.</p>
+            <p class="text-danger" *ngIf="hasErrors('minlength')">Your {{newChanges}} must've at least 5 characters.</p>
+            <p class="text-danger" *ngIf="hasErrors('invalidDni')">Your {{newChanges}} must have upper and lower case letters.</p>
+        </div>
+    </form>

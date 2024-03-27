@@ -397,3 +397,18 @@ Nombre es obligatorio
 <div *ngIf="myForm.get('email').hasError('required') && myForm.get('email').touched">
 Correo no valido
 </div> 
+
+
+-- CICLOS DE VIDA
+
+El ciclo de vida de un componente se compone de una serie de eventos que ocurren desde la creación hasta la destrucción del componente.
+
+1) ngOnChanges: Se dispara cuando los datos de entrada (@input()) del componente cambian.
+2) ngOnInit: Ocurre después de que Angular ha inicializado todas las propiedades del Componente
+3) ngDoCheck: Se ejecuta durante cada detección de cambios y permite realizar acciones de verificación personalizadas.
+4) ngAfterContentInit: Ocurre despues de que Angular haya proyectado el contenido en el componente. @ContentChild
+5) ngAfterContentChecked: Se ejecuta despues de cada verficicacion del contenido proyectado. @ContentChild
+6) ngAfterViewInit: Ocurre después de que Angular haya inicializado las vistas del componente. @ViewChild
+7) ngAfterViewChecked: Se ejecuta después de cada verificación de las vistas del componente. @ViewChild
+8) ngOnDestroy: Se dispara justo antes de que Angular destruya el componente. 
+

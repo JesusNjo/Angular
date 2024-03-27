@@ -16,6 +16,7 @@ export class ContacsComponent {
     email: 'naranjofjx@gmail.com'
    }
    dniType?:string;
+   showDNI?:boolean;
 
 
   constructor(forms:FormBuilder){
@@ -50,6 +51,7 @@ export class ContacsComponent {
 
     this.formGroup.get('dniType')?.valueChanges.subscribe(value=>{
       this.dniType = value; // <-- Para vincular el campo y traer su valor escuchando los cambios
+      this.showDNI = value != '';
     })
 
 
@@ -73,7 +75,7 @@ export class ContacsComponent {
   hasErrors(controlName:string,typeError:string){
     return this.formGroup.get(controlName)?.hasError(typeError) && this.formGroup.get(controlName)?.touched
   }
-  validRegex():ValidatorFn{
+  validRegex = (): ValidatorFn => {
     return (control) => {
       const name = control.value as string;
       const regex = /^(?=.*[a-z])(?=.*[A-Z])/; // Expresión regular para verificar que haya al menos una mayúscula y una minúscula
@@ -82,6 +84,7 @@ export class ContacsComponent {
       }
       return null;
     };
-  }
+  };
+  
 
 }

@@ -14,6 +14,7 @@ import { ProductsComponent } from './products/products.component';
 import { HomecComponent } from './homec/homec.component';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { ContacsComponent } from './contacs/contacs.component';
+import { DniComponent } from './contacs/dni/dni.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ContacsComponent } from './contacs/contacs.component';
     ProductsComponent,
     HomecComponent,
     ProductsDetailsComponent,
-    ContacsComponent
+    ContacsComponent,
+    DniComponent
   ],
   imports: [
     BrowserModule,
