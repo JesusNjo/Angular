@@ -1,6 +1,15 @@
 <div class="container">
     <h2>Product details: </h2>
-    <ng-container *ngIf="loading">Loading.....</ng-container>
+    <h3>Product name: {{product?.title}}</h3>
+    <h2 [ngClass]="color">Price: {{product?.price |currency}}</h2>
+    <h2 *ngIf="product?.category">Details: {{product?.description}}</h2>
+    
+</div>
+
+
+<!-- <div class="container">
+    <h2>Product details: </h2>
+    //<ng-container *ngIf="loading">Loading.....</ng-container>
     <ng-container *ngIf="!loading">
     <h3>Product name: {{product?.name}}</h3>
     <h2 [ngClass]="color">Price: {{product?.price |currency}}</h2>
@@ -8,4 +17,5 @@
     </ng-container>
     
     
-</div>
+</div> -->
+

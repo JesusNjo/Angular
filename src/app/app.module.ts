@@ -15,6 +15,7 @@ import { HomecComponent } from './homec/homec.component';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { ContacsComponent } from './contacs/contacs.component';
 import { DniComponent } from './contacs/dni/dni.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DniComponent } from './contacs/dni/dni.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     
   ],
   providers: [],

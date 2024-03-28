@@ -412,3 +412,53 @@ El ciclo de vida de un componente se compone de una serie de eventos que ocurren
 7) ngAfterViewChecked: Se ejecuta después de cada verificación de las vistas del componente. @ViewChild
 8) ngOnDestroy: Se dispara justo antes de que Angular destruya el componente. 
 
+-- CONEXION ENTRE API'S Y EL BACKEND
+API: (PROGRAMMING APLICATION INTERFACES) se utilizan para permitir la comunicación entre diferentes sistemas de software. Son un conjunto de reglas y definiciones que permiten que aplicaciones y servicios se comuniquen entre si.
+Consumo de APIS: 
+1) Integración de servicios: Las APIs permiten que diferentes servicios web se integren entre si. Por ejemplo, tu aplicación puede utilizar la api de google maps para mostrar mapas, La API de twitter para mostrar tweets, etc.
+2) Acceso a datos externos: Las APIs facilitan el acceso de datos y recursos externos que residen en servidores externos. Puedes usar APIs para obtener información de bases de datos, servicios en la nube u otros recursos en linea.
+3) Interacción con plataformas sociales: Muchas plataformas sociales, como facebook, twitter o instagram , proporcionan APIs que permiten a los desarrolladores acceder a funciones especificas de esas plataformas, como publicar contenido o recuperar datos de perfiles de usuario.
+4) Desarrollo de aplicaciones moviles: Las aplicaciones moviles a menudo utilizan APIs para conectarse al servicio de la nube y acceder a funcionalidades especificas, como notificaciones push, almacenamiento en la nube y autenticación.
+5) Automatización de procesos: Las APIs permiten la automatizacion de procesos al permitir que sistemas diferentes se comuniquen y compartan datos de manera eficiente. Por ejemplo, una empresa puede tener un sistema de gestion de inventario que se conecta a una API de proveedores para realizar pedidos automaticamente cuando se agota el stock.
+6) Desarrollo de aplicaciones web: Las aplicaciones web modernas amenudo utilizan APIs para cargar datos de forma asincronicas lo que mejora la velocidad y eficiencia de la aplicacion.
+7) Microservicios: En la arquitectura de microservicios, los diferentes componentes del sistema se comunican atravez de APIs, lo que permite la escalabilidad y la flexibilidad en el desarrollo y mantenimiento de aplicaciones.
+
+Importacion de HTTPModule: 
+import {HttpClientModule} from '@angular/common/http';
+
+@NgModule({
+declarations:[
+	//tus componentes aquí
+  ],
+  imports: [
+	HttpClientModule,
+	//otros modulos aqui
+  ],
+  boostrap: [AppComponent]
+})
+
+export class AppModule { }
+
+--------------------------
+import {Injectable, inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
+@Injectable({
+	providedIn: 'root'
+})
+
+export class MyApiService {
+	private apiUrl = 'https://mi-api.com';
+	}
+
+constructor(private http: HttpClient) { }
+//const http = injectable(HttpClient);
+
+getData(): Observable<any> {
+	return this.http.get(`${this.apiUrl}/datos`);
+	}
+
+postData(data:any): Observable<any> {
+	return this.http.post(`${this.apiUrl/enviar-datos}`,data);
+	}

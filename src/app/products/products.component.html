@@ -4,16 +4,18 @@
         <th scope="col">#</th>
         <th scope="col">Product name</th>
         <th scope="col">Price</th>
+        <th scope="col">Category</th>
         <th scope="col">Details</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of productList">
         <th scope="row">{{product.id}}</th>
-        <td>{{product.name}}</td>
-        <td>{{product.price | currency}}</td>
+        <td>{{product.title}}</td>
+        <td [ngClass]="product.price > 100 ? 'red' : 'blue'">{{product.price | currency}}</td>
+        <td>{{product.category}}</td>
         <td>
-            <button class="btn btn-outline-success" [routerLink]="['/products', product.id]">Details</button>
+            <button class="btn btn-outline-success" [routerLink]="['/products', product.id]">View details</button>
         </td>
       </tr>
     </tbody>
